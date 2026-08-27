@@ -21,8 +21,11 @@ let package = Package(
       revision: "390dd2ecd228af81d1494fda8cf89f065971ea7e"
     ),
     // .package(url: "https://github.com/mlalma/eSpeakNGSwift", from: "1.0.1"),
-    .package(url: "https://github.com/manascheema/MisakiSwift", revision: "1997bb19009dcaf31ba01265689b4f7b9c30fa34"),
-    .package(url: "https://github.com/mlalma/MLXUtilsLibrary.git", exact: "0.0.6")
+    .package(url: "https://github.com/manascheema/MisakiSwift", revision: "9d688d693686aa5d8b28b4cbba7467509e07eb1e"),
+    .package(
+      url: "https://github.com/manascheema/MLXUtilsLibrary",
+      revision: "90582afc817036f57ec34022c46aecdb332e6e35"
+    )
   ],
   targets: [
     .target(

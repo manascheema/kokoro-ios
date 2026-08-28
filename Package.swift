@@ -21,7 +21,7 @@ let package = Package(
       revision: "1e4946b7a45b74243148b113c318c672e7460dd1"
     ),
     // .package(url: "https://github.com/mlalma/eSpeakNGSwift", from: "1.0.1"),
-    .package(url: "https://github.com/manascheema/MisakiSwift", revision: "10e399b095a57cb38e0331339b2c45c0e5f715e6"),
+    .package(url: "https://github.com/manascheema/MisakiSwift", revision: "8cf6aabd409a68e2108442e8a7970c3e617adbd7"),
     .package(
       url: "https://github.com/manascheema/MLXUtilsLibrary",
       revision: "086b4c13c1c716d80f7de25c68cc5d22855cb472"
@@ -40,7 +40,7 @@ let package = Package(
         .product(name: "MLXUtilsLibrary", package: "MLXUtilsLibrary")
       ],
       resources: [
-       .copy("Resources")
+       .process("Resources")
       ]
     ),
     .testTarget(

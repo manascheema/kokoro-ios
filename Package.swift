@@ -18,13 +18,13 @@ let package = Package(
   dependencies: [
     .package(
       url: "https://github.com/manascheema/mlx-swift",
-      revision: "eca045da7231150045db0e233a8f5b8b83f7deb1"
+      revision: "1e4946b7a45b74243148b113c318c672e7460dd1"
     ),
     // .package(url: "https://github.com/mlalma/eSpeakNGSwift", from: "1.0.1"),
-    .package(url: "https://github.com/manascheema/MisakiSwift", revision: "a7fbb35410da65344e7135476c937efb7d9eca3e"),
+    .package(url: "https://github.com/manascheema/MisakiSwift", revision: "0b3a151556c5f5c1608d6e119aa23d391d11fc64"),
     .package(
       url: "https://github.com/manascheema/MLXUtilsLibrary",
-      revision: "a69c8425ad52e6ffcb0641acb5fafc24b800849d"
+      revision: "086b4c13c1c716d80f7de25c68cc5d22855cb472"
     )
   ],
   targets: [

@@ -16,7 +16,7 @@ enum G2PProcessorError : Error {
 /// G2P processors convert written text (graphemes) into phonetic representations (phonemes)
 /// for use in text-to-speech synthesis. Different implementations may use different
 /// underlying engines or libraries.
-protocol G2PProcessor {
+public protocol G2PProcessor {
   /// Configures the processor for a specific language.
   /// - Parameter language: The target language for phonemization.
   /// - Throws: `G2PProcessorError.unsupportedLanguage` if the language is not supported.
@@ -27,4 +27,13 @@ protocol G2PProcessor {
   /// - Returns: A phonetic string representation of the input text and optionally arrays of tokens.
   /// - Throws: `G2PProcessorError.processorNotInitialized` if `setLanguage(_:)` has not been called.
   func process(input: String) throws -> (String, [MToken]?)
+}
+
+public extension G2PProcessor {
+  /// Refine pronunciations before synthesis while preserving the same tokens for word timing.
+  func process(input: String, adjustPronunciations: (([MToken]) -> Bool)?) throws -> (String, [MToken]?) {
+    let output = try process(input: input)
+    guard let tokens = output.1, adjustPronunciations?(tokens) == true else { return output }
+    return (tokens.map { ($0.phonemes ?? "❓") + $0.whitespace }.joined(), tokens)
+  }
 }

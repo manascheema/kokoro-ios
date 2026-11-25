@@ -56,6 +56,10 @@ public final class KokoroTTS {
   /// Grapheme-to-phoneme processor for text conversion
   private let g2pProcessor: G2PProcessor?
   
+  /// Allows an application to refine token pronunciations using sentence context before synthesis.
+  /// Return true after editing a token's phonemes. The same tokens receive word timings.
+  public var adjustPronunciations: (([MToken]) -> Bool)?
+
   /// Currently active language (cached to avoid reinitializing G2P)
   private var chosenLanguage: Language = .none
   
@@ -241,11 +245,10 @@ public final class KokoroTTS {
   
   /// Converts input text to phonemes using the G2P processor.
   private func phonemizeText(_ text: String) throws -> (String, [MToken]?) {
-    let phonemizedOutput = try g2pProcessor?.process(input: text)
-    guard let phonemizedOutput else {
+    guard let g2pProcessor else {
       throw G2PProcessorError.processorNotInitialized
     }
-    return phonemizedOutput
+    return try g2pProcessor.process(input: text, adjustPronunciations: adjustPronunciations)
   }
   
   /// Prepares input tensors for the model from phonemized text.
